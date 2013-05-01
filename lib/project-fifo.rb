@@ -8,12 +8,13 @@ require 'project-fifo/iprange'
 
 class ProjectFifo
 
-  attr_reader :endpoint, :username, :password, :token
+  attr_reader :endpoint, :username, :password, :token, :ssh_keys
   
   def initialize(endpoint, username, password)
     @endpoint = endpoint
     @username = username
     @password = password
+    @ssh_keys = nil
     @verbose = true
     @rest = RestClient::Resource.new(endpoint, :headers => { :content_type => 'application/json', :accept => :json })
   end
@@ -21,6 +22,7 @@ class ProjectFifo
   def connect()
     response = post('sessions', { 'user' => @username, 'password' => @password })
     @token = response["session"]
+    @ssh_keys = response["metadata"]["jingles"]["ssh_keys"]
     @rest.headers[:x_snarl_token] = @token
     response
   end
