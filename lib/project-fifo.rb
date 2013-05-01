@@ -39,6 +39,10 @@ class ProjectFifo
     api_request { @rest[path_part].put(payload.to_json, additional_headers, &block) }
   end
   
+  def delete(path_part, additional_headers = {}, &block)
+    api_request { @rest[path_part].delete(additional_headers, &block) }
+  end
+  
   def vms
     @vms ||= ProjectFifo::VM.new(self)
   end
@@ -61,7 +65,11 @@ class ProjectFifo
   def api_request(&block)
     response_body = begin
                       response = block.call
-                      response.body
+                      if 204 == response.code then
+                        '{"success": true}'
+                      else
+                        response.body
+                      end
                     rescue RestClient::Exception => e
                       if @verbose
                         puts "I have #{e.inspect} with #{e.http_code}"
