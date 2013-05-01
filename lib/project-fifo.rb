@@ -4,6 +4,7 @@ require 'project-fifo/resource'
 require 'project-fifo/vm'
 require 'project-fifo/dataset'
 require 'project-fifo/package'
+require 'project-fifo/iprange'
 
 class ProjectFifo
 
@@ -37,15 +38,19 @@ class ProjectFifo
   end
   
   def vms
-    ProjectFifo::VM.new(self)
+    @vms ||= ProjectFifo::VM.new(self)
   end
   
   def datasets
-    ProjectFifo::Dataset.new(self)
+    @datasets ||= ProjectFifo::Dataset.new(self)
   end
   
   def packages
-    ProjectFifo::Package.new(self)
+    @packages ||= ProjectFifo::Package.new(self)
+  end
+  
+  def ipranges
+    @ipranges ||= ProjectFifo::Iprange.new(self)
   end
   
   protected
