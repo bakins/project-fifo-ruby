@@ -10,10 +10,22 @@ fifo.vms.list.each do |vm|
   pp fifo.vms[vm]
 end
 
-fifo.datasets.list.each do |dataset|
-  pp fifo.datasets[dataset]
-end
+package = fifo.packages.list.first
+dataset = fifo.datasets.list.first
+iprange = fifo.ipranges.list.first
 
-fifo.packages.list.each do |package|
-  pp fifo.packages[package]
-end
+data = {
+  resolvers: [ "8.8.8.8" ],
+  dataset: dataset, 
+  package: package, 
+  config: { 
+    alias: "api-test", 
+    networks: { 
+      net0: iprange
+    }
+  }
+}
+
+pp data
+
+pp fifo.vms.create(data)
