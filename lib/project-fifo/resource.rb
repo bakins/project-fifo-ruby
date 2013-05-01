@@ -29,5 +29,17 @@ class ProjectFifo
       fifo.post(namespace, data)
     end
     
+    def delete(uuid)
+      fifo.delete(namespace + '/' + uuid)
+    end
+    
+    def post(uuid, payload)
+      fifo.post(namespace + '/' + uuid, payload)
+    end
+    
+    def put(uuid, payload)
+      fifo.put(namespace + '/' + uuid, payload)
+    end
+    
   end
 end
