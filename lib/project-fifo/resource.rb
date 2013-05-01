@@ -25,5 +25,9 @@ class ProjectFifo
       fifo.put([ namespace, uuid, 'metadata'].join('/'), { key => value })
     end
     
+    def create(data)
+      fifo.post(namespace, data)
+    end
+    
   end
 end
