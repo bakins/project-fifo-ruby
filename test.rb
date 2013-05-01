@@ -15,11 +15,12 @@ dataset = fifo.datasets.list.first
 iprange = fifo.ipranges.list.first
 
 data = {
-  resolvers: [ "8.8.8.8" ],
   dataset: dataset, 
   package: package, 
   config: { 
     alias: "api-test", 
+    resolvers: [ "8.8.8.8" ],
+    ssh_keys: fifo.ssh_keys,
     networks: { 
       net0: iprange
     }
