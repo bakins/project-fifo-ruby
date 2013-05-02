@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "project-fifo-ruby"
-  spec.version       = '0.1.0'
+  spec.version       = '0.2.0'
   spec.authors       = [ "Brian Akins" ]
   spec.email         = [ "brian@akins.org" ]
   spec.description   = %q{A simple incomplete project-fifo client API}
@@ -16,4 +16,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.required_ruby_version = ">= 1.9.1"
   spec.add_dependency("rest-client", "~> 1.6")
+  spec.add_dependency("hashie", "~> 2.0")
+  spec.add_dependency("json")
 end

@@ -1,5 +1,6 @@
 require 'rest_client'
 require 'json'
+require 'hashie'
 require 'project-fifo/resource'
 require 'project-fifo/vm'
 require 'project-fifo/dataset'
@@ -77,6 +78,7 @@ class ProjectFifo
                       end
                       e.response
                     end
-    JSON.parse(response_body)
+    result = JSON.parse(response_body)
+    return result.is_a?(Hash) ? Hashie::Mash.new(result) : result
   end
 end
