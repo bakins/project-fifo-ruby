@@ -1,3 +1,5 @@
+require 'hash_validator'
+
 class ProjectFifo
   class Resource
     
@@ -26,6 +28,9 @@ class ProjectFifo
     end
     
     def create(data)
+      pp validations
+      validator = HashValidator.validate(data, validations)
+      raise(ArgumentError, validator.errors) unless validator.valid?
       fifo.post(namespace, data)
     end
     
@@ -39,7 +44,11 @@ class ProjectFifo
     
     def put(uuid, payload)
       fifo.put(namespace + '/' + uuid, payload)
+    end 
+
+    protected
+    def validations()
+      return {}
     end
-    
   end
 end

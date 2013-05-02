@@ -18,4 +18,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency("rest-client", "~> 1.6")
   spec.add_dependency("hashie", "~> 2.0")
   spec.add_dependency("json")
+  spec.add_dependency("hash_validator")
 end
