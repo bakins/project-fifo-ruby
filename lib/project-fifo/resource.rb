@@ -28,8 +28,7 @@ class ProjectFifo
     end
     
     def create(data)
-      validator = HashValidator.validate(data, validations)
-      raise(ArgumentError, validator.errors) unless validator.valid?
+      validate!(data)
       fifo.post(namespace, data)
     end
     
@@ -46,6 +45,11 @@ class ProjectFifo
     end 
 
     protected
+    def validate!(data)
+      validator = HashValidator.validate(data, validations)
+      raise(ArgumentError, validator.errors) unless validator.valid?
+    end
+    
     def validations()
       return {}
     end
