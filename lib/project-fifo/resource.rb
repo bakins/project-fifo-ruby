@@ -5,9 +5,10 @@ class ProjectFifo
     
     attr_reader :fifo, :namespace
     
-    def initialize(fifo, namespace)
+    def initialize(fifo, namespace, name="name")
       @namespace = namespace
       @fifo = fifo
+      @name = name
     end
     
     def list
@@ -23,6 +24,10 @@ class ProjectFifo
         fifo.get(namespace + '/' + uuid)
     end
     
+    def get_by_name(name)
+      list.map{|i| get(i) }.select{|i| i[@name] == name}
+    end
+
     def metadata(uuid, key, value)
       fifo.put([ namespace, uuid, 'metadata'].join('/'), { key => value })
     end

@@ -5,7 +5,7 @@ class ProjectFifo
   class VM < ProjectFifo::Resource
           
     def initialize(fifo)
-      super(fifo, 'vms')
+      super(fifo, 'vms', 'alias')
     end
 
     %w{ start stop reboot }.each do |act|
