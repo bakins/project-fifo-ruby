@@ -5,10 +5,9 @@ class ProjectFifo
     
     attr_reader :fifo, :namespace
     
-    def initialize(fifo, namespace, name="name")
+    def initialize(fifo, namespace)
       @namespace = namespace
       @fifo = fifo
-      @name = name
     end
     
     def list
@@ -25,7 +24,7 @@ class ProjectFifo
     end
     
     def get_by_name(name)
-      list.map{|i| get(i) }.select{|i| i[@name] == name}
+      list.map{|i| get(i) }.select{|i| i['name'] == name}
     end
 
     def metadata(uuid, key, value)

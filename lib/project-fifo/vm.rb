@@ -3,16 +3,24 @@
 class ProjectFifo
   
   class VM < ProjectFifo::Resource
-          
+       
     def initialize(fifo)
-      super(fifo, 'vms', 'alias')
+      super(fifo, 'vms')
     end
 
+    def get_by_alias(a)
+      list.map{|i| get(i) }.select{|i| i['config']['alias'] == a }
+    end
+    
+    def get_by_name(n)
+      get_by_alias(n)
+    end
+    
     %w{ start stop reboot }.each do |act|
       define_method(act) { |uuid, force| action(uuid, act, force) }
     end
     
-     VALIDATIONS = {
+    VALIDATIONS = {
       package: 'string',
       dataset: 'string',
       config: {
