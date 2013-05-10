@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "project-fifo-ruby"
-  spec.version       = '0.2.0'
+  spec.version       = '0.3.0'
   spec.authors       = [ "Brian Akins" ]
   spec.email         = [ "brian@akins.org" ]
   spec.description   = %q{A simple incomplete project-fifo client API}
