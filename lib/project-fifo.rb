@@ -74,7 +74,6 @@ class ProjectFifo
                     rescue RestClient::Exception => e
                       if @verbose
                         puts "I have #{e.inspect} with #{e.http_code}"
-                        pp e
                       end
                       e.response
                     end
