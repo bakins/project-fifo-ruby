@@ -6,6 +6,7 @@ require 'project-fifo/vm'
 require 'project-fifo/dataset'
 require 'project-fifo/package'
 require 'project-fifo/iprange'
+require 'project-fifo/network'
 
 class ProjectFifo
 
@@ -60,6 +61,10 @@ class ProjectFifo
     @ipranges ||= ProjectFifo::Iprange.new(self)
   end
   
+  def networks
+    @networks ||= ProjectFifo::Network.new(self)
+ end
+ 
   protected
   
   # inspired by https://github.com/adamhjk/dynect_rest/blob/master/lib/dynect_rest.rb
