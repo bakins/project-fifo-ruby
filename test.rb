@@ -2,7 +2,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'lib'))
 require 'project-fifo'
 require 'pp'
 
-fifo = ProjectFifo.new("http://192.168.1.100/api/0.1.0/", "admin", "admin")
+fifo = ProjectFifo.new("http://192.168.1.110/api/0.1.0/", "admin", "admin")
 
 fifo.connect
 
@@ -16,7 +16,6 @@ data = {
   config: { 
     alias: "api-test", 
     resolvers: [ "8.8.8.8" ],
-    ssh_keys: fifo.ssh_keys,
     networks: { 
       net0: network
     }
