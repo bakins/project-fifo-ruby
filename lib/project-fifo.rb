@@ -24,7 +24,7 @@ class ProjectFifo
   def connect()
     response = post('sessions', { 'user' => @username, 'password' => @password })
     @token = response["session"]
-    @ssh_keys = response["metadata"]["jingles"]["ssh_keys"]
+    @ssh_keys = response["keys"]
     @rest.headers[:x_snarl_token] = @token
     response
   end
